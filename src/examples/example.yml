@@ -1,7 +1,7 @@
 description: >
   Example
 usage:
-  version: 2.1
+  version: 2
   orbs:
     tactileorb: tactileentertainment/publish-image-gcr@1.0.0
   workflows:
