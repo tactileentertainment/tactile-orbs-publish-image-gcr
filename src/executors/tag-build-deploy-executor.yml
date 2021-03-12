@@ -1,0 +1,5 @@
+description: >
+  Simple Ubuntu executor
+machine:
+  image: ubuntu-2004:202101-01
+working_directory: ~/app

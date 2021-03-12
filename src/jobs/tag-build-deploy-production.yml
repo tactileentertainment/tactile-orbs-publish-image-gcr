@@ -1,0 +1,21 @@
+description: >
+  Sample description
+
+executor: tag-build-deploy-executor
+parameters:
+    merge-trigger-branch:
+        type: string
+        default: a-branch-that-shall-never-exist
+    merge-destination-branch:
+        type: string
+        default: a-branch-that-shall-never-exist
+    fingerprints:
+        type: string
+    projectName:
+        type: string
+steps:
+    - tag-build-deploy:
+          merge-trigger-branch: << parameters.merge-trigger-branch >>
+          merge-destination-branch: << parameters.merge-destination-branch >>
+          fingerprints: << parameters.fingerprints >>
+          projectName: << parameters.projectName >>
