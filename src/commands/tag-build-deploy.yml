@@ -1,0 +1,49 @@
+description: >
+  Builds the image and push it to GCR
+parameters:
+    merge-trigger-branch:
+        type: string
+        default: a-branch-that-shall-never-exist
+    merge-destination-branch:
+        type: string
+        default: a-branch-that-shall-never-exist
+    fingerprints:
+        type: string
+    projectName:
+        type: string
+steps:
+    - add_ssh_keys:
+          fingerprints:
+              - parameters.fingerprints
+    - checkout
+    - run:
+          name: Tagging release
+          command: |
+              npm install -g \
+                  semantic-release@17 \
+                  conventional-changelog-conventionalcommits@4
+              npx semantic-release
+    - run:
+          command: |
+                cp .npmrc ~/
+                echo -e "\n//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN\n//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+    - run:
+          name: Build GCP Docker Image
+          command: |
+              npm install -g $CI_CD_TOOLS_PACKAGE
+              npx build-docker-image --name << parameters.projectName >> --extra-tag $EXTRA_TAG
+              source $BASH_ENV
+    - when:
+          condition:
+              equal: [ << pipeline.git.branch >>, << parameters.merge-trigger-branch >> ]
+          steps:
+              - run:
+                    name: Merge << parameters.merge-trigger-branch >> to << parameters.merge-destination-branch >>
+                    command: |
+                        git config --global user.email tactile-deploy@tactile.dk
+                        git config --global user.name "Tactile Deploy"
+                        git fetch --all
+                        git checkout << parameters.merge-destination-branch >>
+                        git merge origin << parameters.merge-trigger-branch >>
+                        git push origin << parameters.merge-destination-branch >>
+                        git checkout << parameters.merge-trigger-branch >>
