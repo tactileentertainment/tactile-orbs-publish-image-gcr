@@ -1,5 +1,5 @@
 description: >
-  Sample description
+  Calls the command to build and push GCR image
 
 executor: tag-build-deploy-executor
 parameters:
@@ -13,9 +13,12 @@ parameters:
         type: string
     projectName:
         type: string
+    git-branch:
+        type: string
 steps:
     - tag-build-deploy:
           merge-trigger-branch: << parameters.merge-trigger-branch >>
           merge-destination-branch: << parameters.merge-destination-branch >>
           fingerprints: << parameters.fingerprints >>
           projectName: << parameters.projectName >>
+          git-branch: << parameters.git-branch >>

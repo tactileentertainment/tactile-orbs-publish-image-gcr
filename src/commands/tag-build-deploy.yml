@@ -11,6 +11,8 @@ parameters:
         type: string
     projectName:
         type: string
+    git-branch:
+        type: string
 steps:
     - add_ssh_keys:
           fingerprints:
@@ -35,7 +37,7 @@ steps:
               source $BASH_ENV
     - when:
           condition:
-              equal: [ << pipeline.git.branch >>, << parameters.merge-trigger-branch >> ]
+              equal: [ << parameters.git-branch >>, << parameters.merge-trigger-branch >> ]
           steps:
               - run:
                     name: Merge << parameters.merge-trigger-branch >> to << parameters.merge-destination-branch >>
