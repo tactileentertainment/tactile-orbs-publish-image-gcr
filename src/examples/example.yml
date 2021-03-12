@@ -10,6 +10,6 @@ usage:
         - tactileorb/tag-build-deploy-production:
           merge-trigger-branch: release
           merge-destination-branch: master
-          fingerprints: ''
-          projectName: ''
-          git-branch: ''
+          fingerprints: some
+          projectName: some
+          git-branch: some
