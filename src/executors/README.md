@@ -11,16 +11,10 @@ View the included _[hello.yml](./hello.yml)_ example.
 
 ```yaml
 description: >
-  This is a sample executor using Docker and Node.
-docker:
-  - image: 'cimg/node:<<parameters.tag>>'
-parameters:
-  tag:
-    default: lts
-    description: >
-      Pick a specific circleci/node image variant:
-      https://hub.docker.com/r/cimg/node/tags
-    type: string
+  This is a sample executor using Ubuntu.
+machine:
+  image: ubuntu-2004:202101-01
+working_directory: ~/app
 ```
 
 ## See:

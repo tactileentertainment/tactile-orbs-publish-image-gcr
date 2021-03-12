@@ -6,22 +6,30 @@ Each _YAML_ file within this directory will be treated as an orb job, with a nam
 
 Jobs may invoke orb commands and other steps to fully automate tasks with minimal user configuration.
 
-View the included _[hello.yml](./hello.yml)_ example.
-
 
 ```yaml
-  # What will this job do?
-  # Descriptions should be short, simple, and clear.
-  Sample description
-executor: default
+  This job only calls the command
+executor: tag-build-deploy-executor
 parameters:
-  greeting:
-    type: string
-    default: "Hello"
-    description: "Select a proper greeting"
+    merge-trigger-branch:
+        type: string
+        default: a-branch-that-shall-never-exist
+    merge-destination-branch:
+        type: string
+        default: a-branch-that-shall-never-exist
+    fingerprints:
+        type: string
+    projectName:
+        type: string
+    git-branch:
+        type: string
 steps:
-  - greet:
-      greeting: << parameters.greeting >>
+    - tag-build-deploy:
+          merge-trigger-branch: << parameters.merge-trigger-branch >>
+          merge-destination-branch: << parameters.merge-destination-branch >>
+          fingerprints: << parameters.fingerprints >>
+          projectName: << parameters.projectName >>
+          git-branch: << parameters.git-branch >>
 ```
 
 ## See:
