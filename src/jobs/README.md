@@ -23,6 +23,8 @@ parameters:
         type: string
     git-branch:
         type: string
+    build-id:
+        type: string
 steps:
     - tag-build-deploy:
           merge-trigger-branch: << parameters.merge-trigger-branch >>
@@ -30,6 +32,7 @@ steps:
           fingerprints: << parameters.fingerprints >>
           projectName: << parameters.projectName >>
           git-branch: << parameters.git-branch >>
+          build-id: << parameters.build-id >>
 ```
 
 ## See:

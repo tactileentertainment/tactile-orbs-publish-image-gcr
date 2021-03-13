@@ -25,4 +25,7 @@ parameters:
   git-branch:
     type: string
     description: "Pipeline Git branch"
+  build-id:
+    type: string
+    description: "CircleCI Build/Pipeline ID"
 ```
