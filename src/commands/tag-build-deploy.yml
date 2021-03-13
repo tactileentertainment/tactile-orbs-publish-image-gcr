@@ -9,7 +9,7 @@ parameters:
         default: a-branch-that-shall-never-exist
     fingerprints:
         type: string
-    projectName:
+    project-name:
         type: string
     git-branch:
         type: string

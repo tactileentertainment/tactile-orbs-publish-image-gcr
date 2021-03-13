@@ -19,7 +19,7 @@ parameters:
   fingerprints:
     type: string
     description: "CircleCI fingerprints"
-  projectName:
+  project-name:
     type: string
     description: "Task project name"
   git-branch:

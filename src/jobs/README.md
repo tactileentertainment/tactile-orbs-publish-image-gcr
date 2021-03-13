@@ -19,7 +19,7 @@ parameters:
         default: a-branch-that-shall-never-exist
     fingerprints:
         type: string
-    projectName:
+    project-name:
         type: string
     git-branch:
         type: string
@@ -30,7 +30,7 @@ steps:
           merge-trigger-branch: << parameters.merge-trigger-branch >>
           merge-destination-branch: << parameters.merge-destination-branch >>
           fingerprints: << parameters.fingerprints >>
-          projectName: << parameters.projectName >>
+          project-name: << parameters.project-name >>
           git-branch: << parameters.git-branch >>
           build-id: << parameters.build-id >>
 ```
