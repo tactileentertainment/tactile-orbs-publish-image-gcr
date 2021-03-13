@@ -15,8 +15,6 @@ parameters:
         type: string
     build-id:
         type: string
-    git-branch:
-        type: string
 steps:
     - add_ssh_keys:
           fingerprints:

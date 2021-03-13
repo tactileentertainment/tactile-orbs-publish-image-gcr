@@ -17,8 +17,7 @@ parameters:
         type: string
     build-id:
         type: string
-    git-branch:
-        type: string
+
 steps:
     - tag-build-deploy:
           merge-trigger-branch: << parameters.merge-trigger-branch >>
