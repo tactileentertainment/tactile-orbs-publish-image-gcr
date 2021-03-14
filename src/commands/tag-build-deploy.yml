@@ -29,8 +29,13 @@ steps:
               npx semantic-release
     - run:
           command: |
-                cp .npmrc ~/
-                echo -e "\n//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN\n//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+                if [[ -f .npmrc ]];
+                then
+                    cp .npmrc ~/
+                    echo -e "\n//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN\n//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+                else
+                    echo -e "@tactileentertainment:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN\n//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+                fi
     - run:
           name: Build GCP Docker Image
           command: |
