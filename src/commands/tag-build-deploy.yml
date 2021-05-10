@@ -24,9 +24,13 @@ steps:
           name: Tagging release
           command: |
               npm install -g \
-                  semantic-release@17 \
-                  conventional-changelog-conventionalcommits@4
-              npx semantic-release
+              semantic-release@17
+              if [[ -f package.json ]];
+              then
+                npx semantic-release
+              else
+                npx semantic-release --plugins "@semantic-release/commit-analyzer, @semantic-release/release-notes-generator, @semantic-release/github"
+              fi
     - run:
           command: |
                 if [[ -f .npmrc ]];
