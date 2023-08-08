@@ -13,7 +13,7 @@ View the included _[hello.yml](./hello.yml)_ example.
 description: >
   This is a sample executor using Ubuntu.
 machine:
-  image: ubuntu-2004:202101-01
+  image: ubuntu-2204:2023.07.2
 working_directory: ~/app
 ```
 
